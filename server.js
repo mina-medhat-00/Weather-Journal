@@ -14,7 +14,7 @@ const port = 3000;
 app.use(bodyParser.json());
 // we don't need to use the extended URL
 app.use(bodyParser.urlencoded({ extended: false }));
-// to tell node that main folder initilaized is website
+// to tell node that main folder initialized is website
 app.use(express.static("website"));
 
 // importing CORS for cross origin allowance
