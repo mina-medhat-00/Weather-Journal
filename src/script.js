@@ -57,8 +57,8 @@ async function getData(url) {
 
 function modifyUI(res) {
   if (res) {
-    tempContainer.textContent = res.temp;
     dateContainer.textContent = res.date;
+    tempContainer.textContent = res.temp;
     feelingsContainer.textContent = res.feelings
       ? res.feelings
       : "How do you feel today?";
@@ -71,9 +71,9 @@ generateBtn.addEventListener("click", async (e) => {
   e.preventDefault();
   const generatedURI = `${baseURI}${zipInput.value}${apiKey}`;
 
-  temp.textContent = "";
-  date.textContent = "";
-  feelings.textContent = "";
+  dateContainer.textContent = "";
+  tempContainer.textContent = "";
+  feelingsContainer.textContent = "";
   errorMessage.textContent = "";
 
   try {
