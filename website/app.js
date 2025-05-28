@@ -14,8 +14,7 @@ const baseURI = "https://api.openweathermap.org/data/2.5/weather?zip=";
 const d = new Date();
 const newDate = d.toDateString();
 
-/*---Event listeners---*/
-button.addEventListener("click", (e) => {
+button.addEventListener("click", async (e) => {
   e.preventDefault();
   const generatedURI = `${baseURI}${zip.value}${apiKey}`;
 
@@ -25,31 +24,28 @@ button.addEventListener("click", (e) => {
   feelings.innerHTML = "";
   errorMessage.innerHTML = "";
 
+  try {
+    const data = await getData(generatedURI);
+    const x = await postData("/add", data);
+    console.log(x);
+  } catch (error) {
+    console.error(error);
+  }
+
   // nesting promises
-  getData(generatedURI).then((data) => {
-    extractData(data).then((info) => {
-      postData("/add", info).then((data) => {
-        fetchData("/all").then((data) => {
-          modifyUI(data);
-        });
-      });
-    });
-  });
+  // getData(generatedURI).then((info) => {
+  //   postData("/add", info).then((data) => {
+  //     fetchData("/all").then((data) => {
+  //       modifyUI(data);
+  //     });
+  //   });
+  // });
 });
 
-/*---Promises---*/
 const getData = async (url) => {
   try {
     const result = await fetch(url);
     const data = await result.json();
-    return data;
-  } catch (error) {
-    console.log("error", error);
-  }
-};
-
-const extractData = async (data) => {
-  try {
     if (data.cod != 200) {
       return data;
     }
