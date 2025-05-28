@@ -15,18 +15,19 @@
   <body>
     <div id="app">
       <h2 class="title">Weather Journal App</h2>
-      <div class="holder feel">
+      <div class="holder">
         <form action="submit">
           <label for="zip">Enter Zip-Code Here</label>
           <input
             type="text"
+            name="zip"
             id="zip"
             placeholder="Enter Zip-code Here"
             autocomplete="off"
           />
           <label for="feelings">How're you feeling today?</label>
           <textarea
-            class="myInput"
+            name="feelings"
             id="feelings"
             cols="30"
             rows="5"
@@ -38,7 +39,7 @@
       </div>
       <div class="holder">
         <h2 class="title">Most Recent Entry</h2>
-        <div id="entryHolder">
+        <div>
           <div id="date"></div>
           <div id="temp"></div>
           <div id="content"></div>
