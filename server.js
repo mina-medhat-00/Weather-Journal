@@ -9,7 +9,7 @@ let data = {};
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static("website"));
+app.use(express.static("src"));
 
 app.post("/add", (req, res) => {
   data = req.body;
@@ -21,5 +21,5 @@ app.get("/all", async (_, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server running on  http://127.0.0.1:${port}`);
+  console.log(`Server running on http://127.0.0.1:${port}`);
 });

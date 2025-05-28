@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./public/favicon.png"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+    <title>Weather Journal</title>
+  </head>
+  <body>
+    <div id="app">
+      <h2 class="title">Weather Journal App</h2>
+      <div class="holder feel">
+        <form action="submit">
+          <label for="zip">Enter Zip-Code Here</label>
+          <input
+            type="text"
+            id="zip"
+            placeholder="Enter Zip-code Here"
+            autocomplete="off"
+          />
+          <label for="feelings">How're you feeling today?</label>
+          <textarea
+            class="myInput"
+            id="feelings"
+            cols="30"
+            rows="5"
+            placeholder="How're you feeling today?"
+            autocomplete="off"
+          ></textarea>
+          <button id="generate" type="submit">Generate</button>
+        </form>
+      </div>
+      <div class="holder">
+        <h2 class="title">Most Recent Entry</h2>
+        <div id="entryHolder">
+          <div id="date"></div>
+          <div id="temp"></div>
+          <div id="content"></div>
+          <div id="error"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
