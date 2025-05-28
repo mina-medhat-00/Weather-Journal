@@ -10,7 +10,14 @@ const tempContainer = document.querySelector("#temp");
 const feelingsContainer = document.querySelector("#content");
 const errorMessage = document.querySelector("#error");
 
-async function fetchData(url) {
+type WeatherResponse = {
+  date: Date;
+  temp: number;
+  feelings: string;
+};
+
+// fetch the data from the weather API
+async function fetchData(url: string) {
   try {
     const result = await fetch(url);
     const data = await result.json();
@@ -22,14 +29,15 @@ async function fetchData(url) {
     return {
       date: newDate,
       temp: data.main.temp,
-      feelings: feelingsInput.value,
+      feelings: (feelingsInput as HTMLInputElement).value,
     };
   } catch (error) {
     throw error;
   }
 }
 
-async function postData(url = "", data = {}) {
+// post data to the server in the data object (simulates db)
+async function postData(url: string, data: object) {
   try {
     const result = await fetch(url, {
       method: "POST",
@@ -45,7 +53,8 @@ async function postData(url = "", data = {}) {
   }
 }
 
-async function getData(url) {
+// get data from the data object in server
+async function getData(url: string) {
   const data = await fetch(url);
   try {
     const res = await data.json();
@@ -55,26 +64,29 @@ async function getData(url) {
   }
 }
 
-function modifyUI(res) {
+// render the data fetched from the get request
+function modifyUI(res: WeatherResponse) {
   if (res) {
-    dateContainer.textContent = res.date;
-    tempContainer.textContent = res.temp;
-    feelingsContainer.textContent = res.feelings
+    (dateContainer as HTMLInputElement).textContent = String(res.date);
+    (tempContainer as HTMLInputElement).textContent = String(res.temp);
+    (feelingsContainer as HTMLInputElement).textContent = res.feelings
       ? res.feelings
       : "How do you feel today?";
   } else {
-    errorMessage.textContent = res.message;
+    (errorMessage as HTMLInputElement).textContent = "An Error Occurred";
   }
 }
 
-generateBtn.addEventListener("click", async (e) => {
+generateBtn?.addEventListener("click", async (e) => {
   e.preventDefault();
-  const generatedURI = `${baseURI}${zipInput.value}${apiKey}`;
+  const generatedURI = `${baseURI}${
+    (zipInput as HTMLInputElement).value
+  }${apiKey}`;
 
-  dateContainer.textContent = "";
-  tempContainer.textContent = "";
-  feelingsContainer.textContent = "";
-  errorMessage.textContent = "";
+  (dateContainer as HTMLInputElement).textContent = "";
+  (tempContainer as HTMLInputElement).textContent = "";
+  (feelingsContainer as HTMLInputElement).textContent = "";
+  (errorMessage as HTMLInputElement).textContent = "";
 
   try {
     const data = await fetchData(generatedURI);
@@ -82,6 +94,6 @@ generateBtn.addEventListener("click", async (e) => {
     const getResponse = await getData(`${serverURL}/all`);
     modifyUI(getResponse);
   } catch (error) {
-    errorMessage.textContent = error;
+    (errorMessage as HTMLInputElement).textContent = String(error);
   }
 });
