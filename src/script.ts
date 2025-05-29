@@ -2,13 +2,18 @@ const baseURI = "https://api.openweathermap.org/data/2.5/weather?zip=";
 const apiKey = "&appid=a82cf7d05a8e434be8aba4b0dfb20b2d&units=imperial";
 const serverURL = "http://127.0.0.1:3000";
 
-const generateBtn = document.querySelector("#generate");
-const zipInput = document.querySelector("#zip");
-const feelingsInput = document.querySelector("#feelings");
-const dateContainer = document.querySelector("#date");
-const tempContainer = document.querySelector("#temp");
-const feelingsContainer = document.querySelector("#content");
-const errorMessage = document.querySelector("#error");
+const weatherForm = document.querySelector("#weatherForm") as HTMLFormElement;
+const generateBtn = document.querySelector("#generateBtn") as HTMLButtonElement;
+
+const zipInput = document.querySelector("#zip") as HTMLInputElement;
+const feelingsInput = document.querySelector("#feelings") as HTMLInputElement;
+
+const resultContainer = document.querySelector(
+  "#resultContainer"
+) as HTMLDivElement;
+const errorContainer = document.querySelector(
+  "#errorContainer"
+) as HTMLDivElement;
 
 type WeatherResponse = {
   date: Date;
@@ -29,7 +34,7 @@ async function fetchData(url: string) {
     return {
       date: newDate,
       temp: data.main.temp,
-      feelings: (feelingsInput as HTMLInputElement).value,
+      feelings: feelingsInput.value,
     };
   } catch (error) {
     throw error;
@@ -66,34 +71,29 @@ async function getData(url: string) {
 
 // render the data fetched from the get request
 function modifyUI(res: WeatherResponse) {
-  if (res) {
-    (dateContainer as HTMLInputElement).textContent = String(res.date);
-    (tempContainer as HTMLInputElement).textContent = String(res.temp);
-    (feelingsContainer as HTMLInputElement).textContent = res.feelings
-      ? res.feelings
-      : "How do you feel today?";
-  } else {
-    (errorMessage as HTMLInputElement).textContent = "An Error Occurred";
-  }
+  resultContainer.textContent = `${String(res.date)}\n${String(res.temp)}\n${
+    res.feelings ? res.feelings : "How do you feel today?"
+  }`;
 }
 
-generateBtn?.addEventListener("click", async (e) => {
+weatherForm.addEventListener("submit", async (e) => {
   e.preventDefault();
-  const generatedURI = `${baseURI}${
-    (zipInput as HTMLInputElement).value
-  }${apiKey}`;
 
-  (dateContainer as HTMLInputElement).textContent = "";
-  (tempContainer as HTMLInputElement).textContent = "";
-  (feelingsContainer as HTMLInputElement).textContent = "";
-  (errorMessage as HTMLInputElement).textContent = "";
+  const generatedURI = `${baseURI}${Number(zipInput.value)}${apiKey}`;
 
+  resultContainer.textContent = "";
+  errorContainer.textContent = "";
+
+  generateBtn.disabled = true;
   try {
     const data = await fetchData(generatedURI);
     await postData(`${serverURL}/add`, data);
     const getResponse = await getData(`${serverURL}/all`);
     modifyUI(getResponse);
   } catch (error) {
-    (errorMessage as HTMLInputElement).textContent = String(error);
+    errorContainer.textContent =
+      error instanceof Error ? error.message : String(error);
+  } finally {
+    generateBtn.disabled = false;
   }
 });

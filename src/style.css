@@ -30,11 +30,24 @@ textarea:focus {
 }
 
 label {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
 }
 
-input {
-  background: #fff;
+.container {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+h2.title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+#zip {
+  background: hsl(255, 100%, 100%);
   color: #000;
   display: block;
   text-align: center;
@@ -46,8 +59,8 @@ input {
   border: none;
 }
 
-textarea {
-  background: #fff;
+#feelings {
+  background: hsl(255, 100%, 100%);
   color: #000;
   display: block;
   margin: 1rem auto;
@@ -57,7 +70,7 @@ textarea {
   resize: none;
 }
 
-button {
+#generateBtn {
   width: 240px;
   height: 80px;
   display: block;
@@ -65,20 +78,14 @@ button {
   font-size: 2rem;
   font-weight: bold;
   border-radius: 8px;
-  box-shadow: 2px 5px 5px #000;
-  background: #ff9000;
-  color: #000;
+  background-color: hsl(0, 0%, 10%);
+  color: hsl(255, 100%, 100%);
   border: none;
   cursor: pointer;
 }
 
-button:hover {
-  transform: scale(1.05);
-  transition: 0.3s ease-in-out;
-}
-
-button:focus {
-  transform: scale(1);
+#generateBtn:hover {
+  background-color: hsl(237, 100%, 70%);
 }
 
 #app {
@@ -89,17 +96,4 @@ button:focus {
   flex-wrap: wrap;
   color: #fff;
   padding: 1rem;
-}
-
-.holder {
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  margin: 1rem 0;
-}
-
-.title {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 1rem;
 }

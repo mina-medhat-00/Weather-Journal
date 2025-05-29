@@ -9,14 +9,14 @@
       href="./public/favicon.png"
     />
     <link rel="stylesheet" href="style.css" />
-    <script defer type="module" src="/dist/src/script.js"></script>
+    <script defer type="module" src="../dist/src/script.js"></script>
     <title>Weather Journal</title>
   </head>
   <body>
     <div id="app">
       <h2 class="title">Weather Journal App</h2>
-      <div class="holder">
-        <form action="submit">
+      <div class="container">
+        <form id="weatherForm" action="submit">
           <label for="zip">Enter Zip-Code Here</label>
           <input
             type="text"
@@ -34,16 +34,14 @@
             placeholder="How're you feeling today?"
             autocomplete="off"
           ></textarea>
-          <button id="generate" type="submit">Generate</button>
+          <button id="generateBtn" type="submit">Generate</button>
         </form>
       </div>
-      <div class="holder">
+      <div class="container">
         <h2 class="title">Most Recent Entry</h2>
         <div>
-          <div id="date"></div>
-          <div id="temp"></div>
-          <div id="content"></div>
-          <div id="error"></div>
+          <div id="resultContainer"></div>
+          <div id="errorContainer"></div>
         </div>
       </div>
     </div>
