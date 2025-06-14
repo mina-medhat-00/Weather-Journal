@@ -9,5 +9,5 @@
     "strict": true,
     "resolveJsonModule": true
   },
-  "include": ["server.ts", "public"]
+  "include": ["public", "server.ts"]
 }

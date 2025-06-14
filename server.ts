@@ -3,7 +3,7 @@ import cors from "cors";
 import bodyParser from "body-parser";
 
 const app = express();
-const port = 3000;
+const PORT = 3000;
 let data = {};
 
 app.use(cors());
@@ -20,6 +20,6 @@ app.get("/all", async (_, res) => {
   res.send(data);
 });
 
-app.listen(port, () => {
-  console.log(`Server running on http://127.0.0.1:${port}`);
+app.listen(PORT, () => {
+  console.log(`Server running on ws://localhost:${PORT}`);
 });

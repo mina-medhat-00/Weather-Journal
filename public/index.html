@@ -16,32 +16,32 @@
     <div id="app">
       <h2 class="title">Weather Journal App</h2>
       <div class="container">
-        <form id="weatherForm" action="submit">
+        <form action="submit" class="weatherForm">
           <label for="zip">Enter Zip-Code Here</label>
           <input
             type="text"
             name="zip"
-            id="zip"
+            class="zip"
             placeholder="Enter Zip-code Here"
             autocomplete="off"
           />
           <label for="feelings">How're you feeling today?</label>
           <textarea
             name="feelings"
-            id="feelings"
+            class="feelings"
             cols="30"
             rows="5"
             placeholder="How're you feeling today?"
             autocomplete="off"
           ></textarea>
-          <button id="generateBtn" type="submit">Generate</button>
+          <button class="generateBtn" type="submit">Generate</button>
         </form>
       </div>
       <div class="container">
         <h2 class="title">Most Recent Entry</h2>
         <div>
-          <div id="resultContainer"></div>
-          <div id="errorContainer"></div>
+          <div class="resultContainer"></div>
+          <div class="errorContainer"></div>
         </div>
       </div>
     </div>

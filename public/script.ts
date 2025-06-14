@@ -2,17 +2,17 @@ const baseURI = "https://api.openweathermap.org/data/2.5/weather?zip=";
 const apiKey = "&appid=a82cf7d05a8e434be8aba4b0dfb20b2d&units=imperial";
 const serverURL = "http://127.0.0.1:3000";
 
-const weatherForm = document.querySelector("#weatherForm") as HTMLFormElement;
-const generateBtn = document.querySelector("#generateBtn") as HTMLButtonElement;
+const weatherForm = document.querySelector(".weatherForm") as HTMLFormElement;
+const generateBtn = document.querySelector(".generateBtn") as HTMLButtonElement;
 
-const zipInput = document.querySelector("#zip") as HTMLInputElement;
-const feelingsInput = document.querySelector("#feelings") as HTMLInputElement;
+const zipInput = document.querySelector(".zip") as HTMLInputElement;
+const feelingsInput = document.querySelector(".feelings") as HTMLInputElement;
 
 const resultContainer = document.querySelector(
-  "#resultContainer"
+  ".resultContainer"
 ) as HTMLDivElement;
 const errorContainer = document.querySelector(
-  "#errorContainer"
+  ".errorContainer"
 ) as HTMLDivElement;
 
 type WeatherResponse = {
